@@ -77,12 +77,16 @@
 			*/
 			function update() {
 				
-				console.log("update was called")
+				
 				moveBoxTo(location)
 				location = location + speed;
+				if (location > boardWidth){
+					speed = speed * -1
+				}
+				
 
 				
-			;
+			
 				
 				
 
