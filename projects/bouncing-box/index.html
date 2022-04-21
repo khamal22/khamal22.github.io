@@ -76,12 +76,15 @@
 			turn it around! 
 			*/
 			function update() {
-				
+				console.log (speed)
 				
 				moveBoxTo(location)
 				location = location + speed;
 				if (location > boardWidth){
-					speed = speed * -1
+					speed = -speed;
+				}
+				if (location < 0 ){
+					speed = -speed
 				}
 				
 
@@ -102,7 +105,17 @@
 				points = points + 1;
 				changeBoxText(points);
 				speed = speed +3;
-		
+				if (speed > 0){
+					speed = speed + 3;
+
+				}
+				
+				else (speed < 0);{
+					speed = speed - 3;
+				}
+				
+
+
 			;
 
 
