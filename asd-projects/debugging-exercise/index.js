@@ -3,7 +3,6 @@ $(document).ready(function(){
 /////////////////
 // initialization
 /////////////////
-// debugger;
 // this section initializes some variables that will be used throughout the program
 var doubleMaxSpeed = 5;
 var maxCircles = 10;
@@ -109,7 +108,7 @@ function update(){
 
 // this moves circles in memory but doesn't update them on the screen
 function moveCircle(circle){
-    circle.x = circle.speedX;
+    circle.x += circle.speedX;
     circle.y += circle.speedY;
 }
 
@@ -117,6 +116,7 @@ function moveCircle(circle){
 function bounceCircle(circle){
 
     // this bounces off the left wall
+    debugger;
     if (circle.x < 0){
         circle.x -= circle.speedX;
         circle.speedX *= -1;
@@ -134,13 +134,13 @@ function bounceCircle(circle){
     // this bounces off the bottom wall
     else if (circle.y > boardHeight){
         circle.y -= circle.speedY;
-        circle.speedX *= -1;
+        circle.speedY *= -1;
     }
 }
 
 // this redraws the circle's position on the screen
 function updateCircleOnScreen(circle){
-    maxCircles = 0;
+    // maxCircles = 0;
 
     // these lines redraw the circle's position
     $(circle.id).css('left', circle.x);
