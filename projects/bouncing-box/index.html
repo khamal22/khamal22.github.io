@@ -9,7 +9,7 @@
 		.box {
 			width: 120px;
 			height: 120px;
-			background-color: rgb(255, 0, 0);
+			background-color: rgb(17, 0, 255);
 			font-size: 300%;
 			text-align: center;
 			display: block;
@@ -69,6 +69,10 @@
 			var location = 0;
 			var points = 0;
 			var speed = 10;
+			var boardHeight = jQuery(window).height();
+			var positionY = 0;
+			var speedY = 5;
+			var boardHeight = jQuery(window).height();
 			;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -76,23 +80,25 @@
 			turn it around! 
 			*/
 			function update() {
-				console.log (speed)
-				
-				moveBoxTo(location)
+				console.log(speed)
+
+				moveBoxTo(location, positionY)
 				location = location + speed;
-				if (location > boardWidth){
+				positionY += speedY
+
+
+				if (location > boardWidth) {
 					speed = -speed;
 				}
-				if (location < 0 ){
+				if (location < 0) {
 					speed = -speed
 				}
-				
-
-				
-			
-				
-				
-
+				if (positionY >= boardHeight) {
+					speedY = -speedY
+				}
+				else if (positionY < 0) {
+					speedY = -1 * speedY
+				}
 			};
 
 			/* 
@@ -102,21 +108,27 @@
 			*/
 			function handleBoxClick() {
 				location = 0;
+				positionY = 0;
 				points = points + 1;
 				changeBoxText(points);
-				speed = speed +3;
-				if (speed > 0){
+				speed = speed + 3;
+				if (speed > 0) {
 					speed = speed + 3;
 
 				}
-				
-				else{
+				else if (locationX < 0){
 					speed = speed - 3;
 				}
-				
+				if (speedY > 0) {
+					speedY += 3;
+				}
+				else if (speedY < 0) {
+					speedY -= 3;
+				}
 
 
-			;
+
+				;
 
 
 			};
