@@ -17,6 +17,7 @@ function runProgram() {
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeyDown);                           // change 'eventType' to the type of event you want to handle
+  $(document).on("keyup", handleKeyUp);
   var KEY = {
     "left": 37,
     "right": 39,
@@ -25,7 +26,7 @@ function runProgram() {
   }
 
   var locationX = 100;
-  var locationY =100;
+  var locationY = 100;
   var speedX = 0;
   var speedY = 0;
 
@@ -38,31 +39,53 @@ function runProgram() {
   by calling this function and executing the code inside.
   */
   function newFrame() {
+    // debugger;
     repositonGameItem();
     redrawDrawItem();
   }
 
   /* 
   Called in response to events.
-  */
-  function handleKeyDown(event) {
-    if (event.which === KEY.left) {
-      console.log("left pressed");
+  //event .which gives the number value to each key pressed 
+   */
+  function handleKeyDown(event) {     
+    if (event.which === KEY.left) { 
+      
       speedX = -5;
     }
     else if (event.which === KEY.right) {
-      console.log("right pressed");
-      speedX = -5;
+      
+      speedX = 5;
     }
     else if (event.which === KEY.up) {
-      console.log("up pressed");
+      
       speedY = -5;
     }
     else if (event.which === KEY.down) {
-      console.log("down pressed");
-      speedY = -5;
+      
+      speedY = 5;
+    }
+  
+  }
+  function handleKeyUp(event) {
+    if (event.which === KEY.left) { 
+      
+      speedX = 0;
+    }
+    else if (event.which === KEY.right) {
+      
+      speedX = 0;
+    }
+    else if (event.which === KEY.up) {
+      
+      speedY = 0;
+    }
+    else if (event.which === KEY.down) {
+      
+      speedY = 0;
     }
   }
+
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -81,7 +104,7 @@ function runProgram() {
   }
   function redrawDrawItem() {
     $("#walker").css("left", locationX);
-    $('#walker').css('top', locationX);
+    $('#walker').css('top', locationY);
   }
 
 
