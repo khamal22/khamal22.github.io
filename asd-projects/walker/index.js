@@ -82,8 +82,7 @@ function runProgram() {
   function redrawDrawItem() {
     $("#walker").css("left", locationX);
     $('#walker').css('top', locationX);
-  } $('#walker').css("right", locationY);
-    $("#walker").css('down', locationY);
+  }
 
 
 }
