@@ -24,8 +24,8 @@ function runProgram() {
     "down": 40,
   }
 
-  var locationX = 0;
-  var locationY = 0;
+  var locationX = 100;
+  var locationY =100;
   var speedX = 0;
   var speedY = 0;
 
@@ -38,8 +38,8 @@ function runProgram() {
   by calling this function and executing the code inside.
   */
   function newFrame() {
-
-
+    repositonGameItem();
+    redrawDrawItem();
   }
 
   /* 
@@ -48,15 +48,19 @@ function runProgram() {
   function handleKeyDown(event) {
     if (event.which === KEY.left) {
       console.log("left pressed");
+      speedX = -5;
     }
     else if (event.which === KEY.right) {
       console.log("right pressed");
+      speedX = -5;
     }
     else if (event.which === KEY.up) {
       console.log("up pressed");
+      speedY = -5;
     }
     else if (event.which === KEY.down) {
-      console.log("down pressed")
+      console.log("down pressed");
+      speedY = -5;
     }
   }
   ////////////////////////////////////////////////////////////////////////////////
@@ -76,8 +80,10 @@ function runProgram() {
     locationY += speedY;
   }
   function redrawDrawItem() {
- $("#box").css("left", locationX);
-  }
+    $("#walker").css("left", locationX);
+    $('#walker').css('top', locationX);
+  } $('#walker').css("right", locationY);
+    $("#walker").css('down', locationY);
 
 
 }
