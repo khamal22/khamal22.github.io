@@ -98,10 +98,12 @@ function runProgram() {
     // turn off event handlers
     $(document).off();
   }
+  // these lines of code gives walker its speed  
   function repositonGameItem() {
     locationX += speedX;
     locationY += speedY;
   }
+  // these lines of code allow the dot to move around along the x and y axis  
   function redrawDrawItem() {
     $("#walker").css("left", locationX);
     $('#walker').css('top', locationY);
