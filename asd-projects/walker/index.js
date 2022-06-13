@@ -98,7 +98,7 @@ function runProgram() {
     // turn off event handlers
     $(document).off();
   }
-  // these lines of code gives walker its speed  
+  // these lines of code updates the gameitem locatin based on the speed  
   function repositonGameItem() {
     locationX += speedX;
     locationY += speedY;
