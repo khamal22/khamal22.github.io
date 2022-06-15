@@ -4,7 +4,7 @@ $(document).ready(function () {
     const $display = $('#display');
 
     // Multiple TODOs: Call your apply function(s) here
-    applyFilter(reddify);
+    applyFilterNoBackground(reddify);
     applyFilterNoBackground(decreaseBlue);
     applyFilterNoBackground(increaseGreenByBlue);
     
