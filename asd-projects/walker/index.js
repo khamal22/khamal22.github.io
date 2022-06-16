@@ -29,6 +29,7 @@ function runProgram() {
   var locationY = 100;
   var speedX = 0;
   var speedY = 0;
+  
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -107,6 +108,8 @@ function runProgram() {
   function redrawDrawItem() {
     $("#walker").css("left", locationX);
     $('#walker').css('top', locationY);
+
+    
   }
 
 

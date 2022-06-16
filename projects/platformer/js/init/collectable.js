@@ -9,7 +9,8 @@
         max: {assetKey: 'max', points: 20},
         steve: {assetKey: 'steve', points: 30},
         grace: {assetKey: 'grace', points: 40},
-        kennedi: {assetKey: 'kennedi', points: 50}
+        kennedi: {assetKey: 'kennedi', points: 50},
+        mini: {assetKey:"mini",points:50},
     };
     
     /**
@@ -41,6 +42,7 @@
         createCollectable(type.kennedi, 250, 400, 0.5)
         createCollectable(type.steve, 800, 300, 0.6  );
         createCollectable(type.max, 600,175, 0.5 )
+        createCollectable(type.mini, 100, 100, 0.5);
         
         
         
