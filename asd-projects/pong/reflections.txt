@@ -1,0 +1,17 @@
+gameplay - game features two paddles and a ball, the goal is to defeat your opponent by being the first one to gain10 point, a player gets a point once the opponent misses a ball.
+
+Conditions - Both players start with zero points and the ball is tossed to either side to begin the game 
+
+end - the games endes once a player has missed to hit the ball 10 times 
+
+the if statemonts would have to do with the game pieces leaving the box 
+
+Which will be static? the board
+
+Which will be animated? the paddles, the pong 
+
+point events, keyboard events
+ 
+ those events allow the game to be playable 
+
+players can compete against another player controlling a second paddle on the opposing side. Players use the paddles to hit a ball back and forth.
