@@ -86,19 +86,13 @@ function applyFilterNoBackground(filterFunction) {
 
 // TODO 5: Create the keepInBounds function
 function keepInBounds(num) {
-    if (num < 0) {
-        return 0;
-
-    }
-    else if (num > 255) {
-        return 255;
-    }
-    else {
-        return num;
-    }
+    num = Math.min(num, 255); // reassigning num to 255 if its higher than 255  
+    
+    num = Math.max(num, 0); 
+    
+    return num;
 
 }
-
 
 // TODO 3: Create reddify function
 function reddify(arr) {
