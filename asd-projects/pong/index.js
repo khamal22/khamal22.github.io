@@ -18,7 +18,7 @@ function runProgram() {
   }
   const BOARD_WIDTH = $("#board").width();
   const BOARD_HEIGHT = $("#board").height();
-console.log(BOARD_HEIGHT,BOARD_WIDTH);
+  console.log(BOARD_HEIGHT, BOARD_WIDTH);
 
 
   // Game Item Objects
@@ -30,6 +30,7 @@ console.log(BOARD_HEIGHT,BOARD_WIDTH);
     obj.y = parseFloat($(id).css("top"));
     obj.width = $(id).width();
     obj.height = $(id).height();
+    // lets me know the diretcion of the ball
     obj.speedX = 0;
     obj.speedY = 0;
 
@@ -41,7 +42,7 @@ console.log(BOARD_HEIGHT,BOARD_WIDTH);
 
   var lPad = factory("#leftPaddle");
 
-  // console.log(rPad,lPad,);
+  console.log(rPad,lPad,ball);
 
 
 
@@ -64,7 +65,7 @@ console.log(BOARD_HEIGHT,BOARD_WIDTH);
     repositonGameItem(rPad);
     repositonGameItem(lPad);
     repositonGameItem(ball);
-    
+
     keepInBounds(rPad);
     keepInBounds(lPad);
     //
@@ -72,6 +73,11 @@ console.log(BOARD_HEIGHT,BOARD_WIDTH);
     redrawDrawItem(lPad);
     redrawDrawItem(ball);
     //
+
+    doCollide(rPad, ball);
+    doCollide(lPad, ball);
+    // 
+    bounce();
   }
 
   /* 
@@ -79,16 +85,16 @@ console.log(BOARD_HEIGHT,BOARD_WIDTH);
   */
   function handleKeyDown(event) {
     if (event.which === KEY.up) {
-      rPad.speedY = -5;
+      rPad.speedY = -10;
     }
     else if (event.which === KEY.down) {
-      rPad.speedY = 5;
+      rPad.speedY = 10;
     }
     else if (event.which === KEY.w) {
-      lPad.speedY = -5;
+      lPad.speedY = -10;
     }
     else if (event.which === KEY.s) {
-      lPad.speedY = 5;
+      lPad.speedY = 10;
     }
   }
 
@@ -149,24 +155,67 @@ console.log(BOARD_HEIGHT,BOARD_WIDTH);
   }
 
   function startBall() {
-    ball.speedX = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-    ball.speedY = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
+    ball.speedX = randomNum = (Math.random() * 5 + 2) * (Math.random() > 0.5 ? -1 : 1);
+    ball.speedY = randomNum = (Math.random() * 5 + 2) * (Math.random() > 0.5 ? -1 : 1);
 
     ball.x = 385
     ball.y = 385
 
   }
-  
+
   function keepInBounds(obj) {
-    obj.y = Math.min(obj.y, BOARD_HEIGHT - obj.height); 
+
+    // allows paddles to stay in bounds
+    obj.y = Math.min(obj.y, BOARD_HEIGHT - obj.height);
+    obj.y = Math.max(obj.y, 0);
+
+    // obj.leftX = obj.x;
+    // obj.topY = obj.y;
+    // obj.rightX = obj.x + obj.width;
+    // obj.bottomY = obj.y + obj.height;
+
+
+  }
+  function doCollide(obj1, obj2) {
+    // TODO: calculate and store the remaining
+    // sides of the obj1
+    obj1.leftX = obj1.x;
+    obj1.topY = obj1.y;
+    obj1.rightX = obj1.x + obj1.width;
+    obj1.bottomY = obj1.y + obj1.height;
+
+    // TODO: Do the same for obj2
+    obj2.leftX = obj2.x;
+    obj2.topY = obj2.y;
+    obj2.rightX = obj2.x + obj2.width;
+    obj2.bottomY = obj2.y + obj2.height;
+
+    // TODO: Return true if they are overlapping, false otherwise
+    if (obj1.leftX < obj2.rightX &&
+      obj1.rightX > obj2.leftX &&
+      obj1.topY < obj2.bottomY &&
+      obj1.bottomY > obj2.topY) {
+        console.log("collision detection")
+
+        // obj2.speedY *= -1;
+        //the ball movement switches when colliding with the paddles from left to right
+        obj2.speedX *= -1;
+      }
+      
+    }
+    // allows ball to bounce off walls 
+    function bounce(){
+      if ( ball.y < 0 || ball.y > BOARD_HEIGHT - ball.height ){
+        ball.speedY *= -1;
+      }
+      else if (ball.x < 0) {          //left
+        startBall();
+    }
+      else if (ball.x > BOARD_WIDTH - ball.width ){
+       startBall();
+      }
+
+    }
     
-    obj.y = Math.max(obj.y, 0); 
-    
-    // return obj;
-
-}
-
-  
-
 
 }
