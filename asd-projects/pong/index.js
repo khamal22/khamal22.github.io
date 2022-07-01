@@ -21,6 +21,11 @@ function runProgram() {
   console.log(BOARD_HEIGHT, BOARD_WIDTH);
 
 
+  var points = {};
+  points.p1 = 0;
+  points.p2 = 0;
+
+
   // Game Item Objects
   function factory(id) {
 
@@ -42,7 +47,11 @@ function runProgram() {
 
   var lPad = factory("#leftPaddle");
 
-  console.log(rPad,lPad,ball);
+
+
+
+
+  console.log(rPad, lPad, ball, player1Score, player2Score);
 
 
 
@@ -129,6 +138,7 @@ function runProgram() {
     // stop the interval timer
     clearInterval(interval);
 
+
     // turn off event handlers
     $(document).off();
   }
@@ -146,12 +156,12 @@ function runProgram() {
   function redrawDrawItem(obj) {
     $(obj.id).css("top", obj.y);
     $(obj.id).css("left", obj.x);
+
+
     // $(obj.id).css('top', rPad.y);
     // $('#rightPaddle').css("left", rPad.x);
     // $('#ball').css("top", ball.x);
     // $("#ball").css("left", ball.y);
-
-
   }
 
   function startBall() {
@@ -195,27 +205,44 @@ function runProgram() {
       obj1.rightX > obj2.leftX &&
       obj1.topY < obj2.bottomY &&
       obj1.bottomY > obj2.topY) {
-        console.log("collision detection")
+      console.log("collision detection")
 
-        // obj2.speedY *= -1;
-        //the ball movement switches when colliding with the paddles from left to right
-        obj2.speedX *= -1;
-      }
-      
+      // obj2.speedY *= -1;
+      //the ball movement switches when colliding with the paddles from left to right
+      obj2.speedX *= -1;
     }
-    // allows ball to bounce off walls 
-    function bounce(){
-      if ( ball.y < 0 || ball.y > BOARD_HEIGHT - ball.height ){
-        ball.speedY *= -1;
-      }
-      else if (ball.x < 0) {          //left
-        startBall();
+
+  }
+  // allows ball to bounce off walls 
+  function bounce() {
+    // ball hits top or bottom wall
+    if (ball.y < 0 || ball.y > BOARD_HEIGHT - ball.height) {
+      ball.speedY *= -1;
     }
-      else if (ball.x > BOARD_WIDTH - ball.width ){
-       startBall();
-      }
+    else if (ball.x < 0) {          //left
+      startBall();
+      points.p2 += 1;
+      updatedScore("#player2Score", points.p2);
 
     }
-    
+    else if (ball.x > BOARD_WIDTH - ball.width) {       //right
+      startBall();
+      points.p1 += 1;
+      updatedScore("#player1Score", points.p1);
+
+    }
+  }
+// prints the score adn it checks for ending the game 
+  function updatedScore(id, updatedScore) {
+    $(id).text(updatedScore)
+    // debugger;
+   
+    if (points.p1 === 5 || points.p2 === 5) {
+      endGame()
+
+    }
+
+  }
+
 
 }
