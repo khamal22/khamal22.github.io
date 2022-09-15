@@ -94,9 +94,9 @@ _.first = function (array, number) {
  *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
  */
 _.last = function (array,number){
-  if (Array.isArray(array) === false) {
-    return [];
-  }
+    if (Array.isArray(array) === false){
+      return [];
+    }
 }
 /** _.indexOf
  * Arguments:
@@ -113,7 +113,15 @@ _.last = function (array,number){
  *   _.indexOf(["a","b","c"], "c") -> 2
  *   _.indexOf(["a","b","c"], "d") -> -1
  */
-_.indexOf = function (array,value)
+_.indexOf = function (array, number){
+  for (var i = 0; i < array.length ;i++ ){
+    if (number === array[i]){
+      return i 
+    }  
+  }
+      return -1;
+    
+}
 /** _.contains
  * Arguments:
  *   1) An array
