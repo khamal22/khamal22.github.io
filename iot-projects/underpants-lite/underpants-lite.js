@@ -30,7 +30,7 @@ var _ = {};
  * _.typeOf([1,2,3]) -> "array"
  */
 
-_.typeof = function (value) {
+_.typeOf = function (value) {
   if (Array.isArray(value) === true) {
     return "array";
   }
@@ -94,7 +94,9 @@ _.first = function (array, number) {
  *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
  */
 _.last = function (array,number){
-    
+  if (Array.isArray(array) === false) {
+    return [];
+  }
 }
 /** _.indexOf
  * Arguments:
@@ -111,7 +113,7 @@ _.last = function (array,number){
  *   _.indexOf(["a","b","c"], "c") -> 2
  *   _.indexOf(["a","b","c"], "d") -> -1
  */
-
+_.indexOf = function (array,value)
 /** _.contains
  * Arguments:
  *   1) An array
