@@ -3,6 +3,8 @@
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 "use strict";
 
+const { result } = require("lodash");
+
 var _ = {};
 
 /**
@@ -71,7 +73,7 @@ _.first = function (array, number) {
   }
 
   var result = [];
-  for (var i = 0; i < number; i++){
+  for (var i = 0; i < number; i++) {
     result.push(array[i]);
   }
   return result;
@@ -93,11 +95,17 @@ _.first = function (array, number) {
  *   _.last(["a", "b", "c"], 1) -> "c"
  *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
  */
-_.last = function (array,number){
-    if (Array.isArray(array) === false){
-      return [];
-    }
-}
+_.last = function (array, number) {
+  if (Array.isArray(array) === false) {
+    return [];
+  }
+  var result = [];
+  for (var i = 0; i <= array.length - 1; i++) {
+    result.push(array[i]);
+  }
+  return result;
+  
+};
 /** _.indexOf
  * Arguments:
  *   1) An array
@@ -113,15 +121,14 @@ _.last = function (array,number){
  *   _.indexOf(["a","b","c"], "c") -> 2
  *   _.indexOf(["a","b","c"], "d") -> -1
  */
-_.indexOf = function (array, number){
-  for (var i = 0; i < array.length ;i++ ){
-    if (number === array[i]){
-      return i 
-    }  
+_.indexOf = function (array, number) {
+  for (var i = 0; i < array.length; i++) {
+    if (number === array[i]) {
+      return i;
+    }
   }
-      return -1;
-    
-}
+  return -1;
+};
 /** _.contains
  * Arguments:
  *   1) An array
@@ -136,7 +143,14 @@ _.indexOf = function (array, number){
  *   _.contains([1,"two", 3.14], "two") -> true
  *   _.contains([1,"two", 3.14], "three") -> false
  */
-
+_.contains = function (array, value){
+  for (var i = 0; i < array.length; i++){
+    if(array[i] === value){
+      return true;
+    }
+  }
+  return false;
+}
 /** _.each
  * Arguments:
  *   1) A collection
@@ -152,6 +166,9 @@ _.indexOf = function (array, number){
  *   _.each(["a","b","c"], function(e,i,a){ console.log(e); });
  *      -> should log "a" "b" "c" to the console
  */
+_.each = function(collection){
+  
+}
 
 /** _.filter
  * Arguments:
@@ -169,6 +186,15 @@ _.indexOf = function (array, number){
  * Extra Credit:
  *   use _.each in your implementation
  */
+_.filter = function(collection, test){
+  _.each(collection, function(el,index)); {
+    for(var index = 0; index < collection.length; index++){
+      el = test(collecetion[index], index, collection);
+      if(el === true){
+        result.push(arr[Index]);
+      }
+      }
+    }};
 
 /** _.map
  * Arguments:
@@ -186,7 +212,18 @@ _.indexOf = function (array, number){
  * Examples:
  *   _.map([1,2,3,4], function(e){ return e * 2; }) -> [2,4,6,8]
  */
+_.map = function(collection, placeholder) {
+  var arr = [];
+  if(Array.isArray(collection)){
+    for(var i = 0; i < collection.length; i++)
+    placeholder()
+  }
+  _.each(collection, function(el, index)){
+    arr.push(placeholder(el,index));
 
+  }
+  return arr;
+}
 /** _.reject
  * Arguments:
  *   1) An array
@@ -202,7 +239,11 @@ _.indexOf = function (array, number){
  * Examples:
  *   _.reject([1,2,3,4,5], function(e){ return e%2 === 0}; ) -> [1,3,5]
  */
-
+_.reject = function(collection, test){
+  return _.filter(collection, function(item)){
+    return !test(item)
+  }
+}
 /** _.partition
 * Arguments:
 *   1) An array
@@ -243,7 +284,14 @@ _.indexOf = function (array, number){
  *   _.every([2,4,6], function(e){ return e % 2 === 0}; ) -> true
  *   _.every([1,2,3], function(e){ return e % 2 === 0}; ) -> false
  */
+_.every = function(collection, placeholder){
+  if (collection.length === 0) return true;
+  return _.reduce(collection, function(isTrue, el)){
+    return placeholder ? ((iisTrue)) ? false : placeholder(el) ? true : false{
 
+    }
+  }
+}
 /** _.some
  * Arguments:
  *   1) A collection
@@ -276,7 +324,11 @@ _.indexOf = function (array, number){
  * Examples:
  *   _.pluck([{a: "one"}, {a: "two"}], "a") -> ["one", "two"]
  */
-
+_.pluck - function(collection, key){
+  return _.map(collection, function(obj) {
+    return obj[key];
+  });
+};
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
