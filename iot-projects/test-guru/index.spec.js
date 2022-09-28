@@ -81,8 +81,8 @@ describe("Test Guru", function () {
       if(this.from_yay !== undefined){
         in_foo = this.from_yay;
       }
-      expect(in_foo === 'im in foo').to.be.true;
-      expect(this.from_yay === '???').to.be.true;
+      expect(in_foo === undefined ).to.be.true;
+      expect(this.from_yay === in_foo ).to.be.true;
     }
     yay();
     foo();
