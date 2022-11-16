@@ -40,6 +40,8 @@ _.typeOf = function (value) {
     return "null";
   }
   return typeof value;
+
+  
 };
 /** _.first
  * Arguments:
@@ -187,7 +189,7 @@ _.each = function(collection){
  *   use _.each in your implementation
  */
 _.filter = function(collection, test){
-  _.each(collection, function(el,index)); {
+  _.each(collection, function(el, index)); {
     for(var index = 0; index < collection.length; index++){
       el = test(collecetion[index], index, collection);
       if(el === true){
