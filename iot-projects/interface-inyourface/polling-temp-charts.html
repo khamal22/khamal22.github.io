@@ -89,20 +89,34 @@
             $('#reg-chart-container').append($("<p>").attr("id", "reg-lowest").text("lowest recorded value is " + regLowest));
             $('#reg-chart-container').append($("<p>").attr("id", "ws-highest").text("Highest recorded value is " + wsHighest));
             $('#reg-chart-container').append($("<p>").attr("id", "ws-lowest").text("lowest recorded value is " + wsLowest));
-                
+
         // TODO 2: Update high and low records
         function updateRegRecords(value){
-            // Update the regular polling records
+           
         }
-
+        
         function updateWSRecords(value){
-            // Update the WebSocket polling records
+            if (value >wsHighest) {
+                wsHighest = value;
+                $("#ws-highest").text("highest recorded value is" + value);
+            }
+
+            if (value < wsLowest) {
+                wsLowest = value;
+                $("#ws-lowest").text("lowest recorded value is" + value);
+            }
         }
 
         // TODO 3: Regular Polling
-
+        var result;
         function doPoll() {
-
+            $.getJSON(
+                "https://361e-64-237-85-162.ngrok.io/pi/sensors/dht/temperature",)
+            function (result) {
+                addDataPoint(result, regData, regChart);
+                updatedRegRecords(result.value);
+                setTimeout(doPoll, 10000);
+            };
         }
 
         doPoll();
@@ -110,6 +124,19 @@
         // TODO 4: WebSocket Polling
         // Create a new WebSocket connection here
 
+        var socket = new WebSocket(
+            "ws://361e-64-237-85-162.ngrok.io/pi/sensors/dht/temperature"
+        );
+
+        socket.onmessage = function (event){
+            var result = JSON.parse(event.data);
+            addDataPoint(result, wsData, wsChart);
+            updateWSRecords(result.value);
+        };
+
+        socket.onerror = function (error) {
+            console.log(error);
+        };
 
 
         function getTime() {
