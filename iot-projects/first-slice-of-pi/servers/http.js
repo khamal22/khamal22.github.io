@@ -3,6 +3,7 @@ const express = require('express'),
 	
 	var app = express();
 	app.use(cors());
+	app.use('/pi/sensors', sensorRoutes);
 
 	app.get('/', function(req, res){
 		res.send('Some response for accessing the root');
