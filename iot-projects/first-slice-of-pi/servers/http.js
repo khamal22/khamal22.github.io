@@ -8,6 +8,9 @@ const express = require('express'),
 		res.send('Some response for accessing the root');
 	 });
 
+	 app.get('/pi', function(req, res){
+		res.send('pi accessed');
+	 });
 module.exports = app;
 
 
