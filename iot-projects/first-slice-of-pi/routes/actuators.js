@@ -10,11 +10,11 @@ const express = require('express'),
 		res.send(resources.pi.sensors.leds);
 	 });
 
-	 router.route('/leds1/:id').get(function (req, res, next) {
+	 router.route('/leds/:id').get(function (req, res, next) {
 		res.send(resources.pi.actuators.leds1[req.params.id]);
 	});
 
-	router.route('/leds2/:id').get(function (req, res, next) {
+	router.route('/leds/:id').get(function (req, res, next) {
 		res.send(resources.pi.actuators.leds2[req.params.id]);
 	});
 
