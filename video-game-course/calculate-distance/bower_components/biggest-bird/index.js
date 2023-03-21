@@ -1,5 +1,5 @@
 (function(window, _) {
-    window.BiggestBird = window.BiggestBird || {
+    window.biggestBird = window.biggestBird || {
       numz: {},
       phyz: {
 

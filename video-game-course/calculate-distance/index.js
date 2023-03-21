@@ -59,16 +59,18 @@
      */
     var mouseCenter = {
       x: stage.mouseX,
-      y:
-    }
+      y: stage.mouseY
+    };
     
+    var distance = biggestBird.phyz.getDistance(shapeUp, mouseCenter);
     
     /*
      * TODO 6: Check if the mouse is within the area of shapeUp, and set the 
      * alpha property of shapeUp accordingly:
      */
     
-    
+    shapeOver.alpha = distance <= radius ? 1 : 0;
+    shapeUp.alpha = distance >= radius ? 1: 0; 
     /*
      * Update the textfield with the current distance between the mouse and 
      *the edge of the shapeUp
