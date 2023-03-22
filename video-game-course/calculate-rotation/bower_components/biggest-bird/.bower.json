@@ -17,15 +17,15 @@
   "dependencies": {
     "lodash": "^4.17.21"
   },
-  "version": "0.0.3",
-  "_release": "0.0.3",
+  "version": "0.0.4",
+  "_release": "0.0.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.0.3",
-    "commit": "2724cfb0e6510317100980226692cbcab0627a56"
+    "tag": "v0.0.4",
+    "commit": "e4ac1b78e345f14436735d2a4423e9e410a32fbb"
   },
   "_source": "https://github.com/khamal22/biggest-bird.git",
-  "_target": "^0.0.3",
+  "_target": "^0.0.4",
   "_originalSource": "https://github.com/khamal22/biggest-bird.git",
   "_direct": true
 }
