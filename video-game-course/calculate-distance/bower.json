@@ -19,6 +19,6 @@
   "dependencies": {
     "EaselJS": "^1.0.2",
     "V6": "^0.0.2",
-    "biggest-bird": "https://github.com/khamal22/biggest-bird.git#^0.0.3"
+    "biggest-bird": "https://github.com/khamal22/biggest-bird.git#^0.0.4"
   }
 }

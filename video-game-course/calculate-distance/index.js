@@ -1,5 +1,5 @@
 // TODO 4: Add a parameter for your gaming library in the index.js module:
-(function(window, createjs, opspark, biggestBird) {
+(function(window, createjs, opspark, BiggestBird) {
   // OUR MODULE CODE GOES BELOW HERE //
 
   console.log('index.js initialized!');
@@ -62,7 +62,7 @@
       y: stage.mouseY
     };
     
-    var distance = biggestBird.phyz.getDistance(shapeUp, mouseCenter);
+    var distance = BiggestBird.phyz.getDistance(shapeUp, mouseCenter);
     
     /*
      * TODO 6: Check if the mouse is within the area of shapeUp, and set the 
@@ -105,4 +105,6 @@
   // OUR MODULE CODE GOES ABOVE HERE //
   
 // TODO 3: Pass your gaming library into the index.js module:
-}(window, window.createjs, window.opspark, window.biggestBird));
+stage.addChild(shapeUp, shapeOver, textfield);
+}(window, window.createjs, window.opspark, window.BiggestBird));
+
