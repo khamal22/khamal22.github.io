@@ -1,8 +1,8 @@
 // TODO 5.b: Replace *my-game-lib* with the name of your game lib
-(function(window, draw, *my-game-lib*) {
-  
+(function (window, draw, biggestbird) {
+
   function centerOnStage(asset, canvas) {
-    if(asset.type === 'circular' || asset.radius) {
+    if (asset.type === 'circular' || asset.radius) {
       asset.x = canvas.width / 2;
       asset.y = canvas.height / 2;
     } else {
@@ -34,17 +34,20 @@
       // rasterize the vector graphic, basically creating a bitmap //
       ship.snapToPixel = true;
       ship.cache(-radius - 10, -radius - 10, radius * 2 + 15, radius * 2 + 15);
-      
+
       // TODO 6: Merge the ship with your game libs makeBody()
-      
-      
-      
+
+      // console.log(biggestbird)
+      // Object.assign(ship, biggestbird.phyz.makeBody('ship'));
+
+
+
       // give the ship a default propulsion //
       ship.propulsion = 0;
-      
+
       return ship;
     },
     centerOnStage,
   };
-// TODO 5.a: Replace *my-game-lib* with the name of your game lib
-}(window, window.opspark.draw, window.*my-game-lib*));
+  // TODO 5.a: Replace *my-game-lib* with the name of your game lib
+}(window, window.opspark.draw, window.biggestbird));

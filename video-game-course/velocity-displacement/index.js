@@ -34,7 +34,10 @@
      * is available to you in this scope as, "this".
      * 2. What are the x and y forces acting on our ship?
      */
-    
+    var forceOnX = ship.propulsion;
+    var forceOny = ship.propulsion;
+
+
     
     
     // also check if the ship needs to rebound off a boundary //

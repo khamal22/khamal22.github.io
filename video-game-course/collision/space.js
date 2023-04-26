@@ -1,4 +1,4 @@
-(function(window, opspark, racket) {
+(function(window, opspark, racket, BiggestBird) {
   /**
    * Creates and returns the space module. Listens for SPAWN 
    * events, adding any bodies in the event
@@ -50,23 +50,38 @@
             
             // TODO 1: Calculate hit test components
             
-            
+            const distance = BiggestBird.phyz.getDistance(bodyA, bodyB);
+
+            // add the radii together
+            // distance <= sum of radii
+
+            const minDistance = bodyA.radius + bodyB.radius;
+
               
             // TODO 2: Do collision check: how do we know if bodies are colliding?
-            if(/* replace with collision check */ false) {
-              // console.log('hit!');
+            if( distance <= bodyA.radius + bodyB.radius) {
+              console.log('hit!');
               
               // TODO 3: Calculate springToX and springToY 
+             var approachAngle = BiggestBird.numz.getAngleDegrees(bodyA, bodyB);{
               
+              }
               
+              var springToX = (Math.cos(approachAngle) + minDistance) + bodyA.x;
+              var springToY = (Math.cos(approachAngle) + minDistance) + bodyA.y;
                 
+              var accelerationOnX = (springToX - bodyB.x) * dampeningForce;
+              var accelerationOnY = (springToY - bodyB.y) * dampeningForce;
+              
+
               // TODO 4: Calculate acceleration to spring-to point, factor in dampeningForce
               
               
               
               // TODO 5: Apply acceleration to bodyB
               
-              
+              bodyB.velocityX += accelerationOnX
+              bodyA.velocityX += accelerationOnX
               
               // TODO 6: Apply inverse acceleration to bodyA
               
@@ -78,4 +93,4 @@
       }
     };
   };
-}(window, window.opspark, window.opspark.racket));
+}(window, window.opspark, window.opspark.racket, window.BiggestBird));

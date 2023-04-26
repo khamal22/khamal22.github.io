@@ -1,0 +1,31 @@
+{
+  "name": "biggest-bird",
+  "homepage": "https://github.com/khamal22/biggest-bird",
+  "authors": [
+    "khamal22 <yyeah3198@gmail.com>"
+  ],
+  "description": "this is a video game library to help develop games",
+  "main": "index.js",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "version": "0.0.4",
+  "_release": "0.0.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.4",
+    "commit": "e4ac1b78e345f14436735d2a4423e9e410a32fbb"
+  },
+  "_source": "https://github.com/khamal22/biggest-bird.git",
+  "_target": "^0.0.4",
+  "_originalSource": "https://github.com/khamal22/biggest-bird.git",
+  "_direct": true
+}
