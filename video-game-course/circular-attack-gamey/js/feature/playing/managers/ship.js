@@ -13,6 +13,10 @@
         FIRE: controls.KEYS.SPACE,
       };
       
+      
+      
+
+
       let 
         ship, 
         fire;
@@ -43,10 +47,11 @@
       }
       
       function handleCollisionShip(impact) {
-        if (this.integrity > 0) {
-          this.integrity -= impact;
+        console.log(this);
+        if (this.shipLives > 0) {
+          this.shipLives -= impact;
           messenger.dispatch({ type: 'DAMAGE', source: 'ship', target: this });
-          if (this.integrity <= 0) {
+          if (this.shipLives <= 0) {
             explode();
             messenger.dispatch({ type: 'EXPLOSION', source: 'ship', target: this });
           }
@@ -58,6 +63,7 @@
         spawn(color = '#4286f4') {
           if(ship) throw new Error('Player is already spawned!');
           // only one ship is managed by the module //
+          ship = 
           ship = assets.makeShip(color);
           ship.handleCollision = handleCollisionShip;
           messenger.dispatch({ type: 'SPAWN', bodies: [ship], source: 'ship' });

@@ -64,6 +64,10 @@
         integrity.addChild(background, integrityMeter);
         hud.addChild(txtScore, integrity);
 
+       
+        
+
+
         /**
          * Called when the asset is added to the stage.
          * Use render() to config and position components.
@@ -104,6 +108,49 @@
           }
         };
 
+        hud.shipLives = function(){
+          let lives = 3;
+          let livesText;
+          let lifeLostText;
+      
+          
+          livesText = draw.textfield(game.canvas.width - 5, 5, `Lives: ${lives}`, {
+            font: "18px Arial",
+            fill: "#0095DD",
+          });
+          livesText.set(1, 0);
+          lifeLostText = draw.textfield(
+            game.canvas.width * 0.5,
+            game.canvas.height * 0.5,
+            "Life lost, click to continue",
+            { font: "18px Arial", fill: "#0095DD" }
+          );
+          
+          lifeLostText.set(0.5);
+          lifeLostText.visible = false;
+          textStyle = { font: "18px Arial", fill: "#0095DD" };
+      
+          scoreText = draw.textfield(5, 5, "Points: 0", textStyle);
+          livesText = draw.textfield(
+            game.canvas.width - 5,
+            5,
+            `Lives: ${lives}`,
+            textStyle
+          );
+          livesText.set(1, 0);
+          lifeLostText = draw.textfield(
+            game.canvas.width * 0.5,
+            game.canvas.height * 0.5,
+            "Life lost, click to continue",
+            textStyle
+          );
+          lifeLostText.set(0.5);
+          lifeLostText.visible = false;
+        }
+
+
+        
+        
         hud.kill = function() {
           createjs.Tween.get(integrityMeter).to({ alpha: 0 }, 1000);
         };

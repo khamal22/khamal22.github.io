@@ -8,10 +8,18 @@
   /**
    * Creates and returns the initializing view.
    */
+
+
+
+
+
+
   function(game) {
     const
       canvas = game.canvas,
-      
+
+     
+
       /*
        * asset is the parent Container for this view. Use
        * asset.addChild() to add child components to the view.
@@ -50,6 +58,16 @@
       asset.off('added', onAdded);
       render();
     }
+    
+
+
+
+
+
+
+
+
+
 
     /*
      * Return the view API: It MUST expose the asset, the render method, and 

@@ -1,4 +1,4 @@
-(function(window, opspark, _) {
+(function (window, opspark, _) {
   const
     Proton = window.Proton,
     draw = opspark.draw,
@@ -37,7 +37,7 @@
    * game is drawn, used for incept positioning of assets.
    */
   _.set(opspark, 'playa.assets',
-    function(canvas, fx, level) {
+    function (canvas, fx, level) {
       // ASSET BEHAVIORS //
       function updateShip(event) {
         phyz.updateVelocity(this, this.propulsion, this.propulsion);
@@ -65,7 +65,7 @@
           projectile.volatility = .125;
           projectile.velocityMax = 10;
           projectile.update = updateProjectile
-          
+
           projectile.snapToPixel = true;
           projectile.cache(-projectile.radius, -projectile.radius, projectile.radius * 2, projectile.radius * 2);
 
@@ -101,6 +101,47 @@
 
           // set the update behavior for the ship //
           ship.update = updateShip;
+           function shipLives(){
+            let lives = 3;
+            let livesText;
+            let lifeLostText;
+
+
+            livesText = draw.textfield(canvas.width - 5, 5, `Lives: ${lives}`, {
+              font: "18px Arial",
+              fill: "#0095DD",
+            });
+            livesText.set(1, 0);
+            lifeLostText = draw.textfield(
+              canvas.width * 0.5,
+              canvas.height * 0.5,
+              "Life lost, click to continue",
+              { font: "18px Arial", fill: "#0095DD" }
+            );
+
+            lifeLostText.set(0.5);
+            lifeLostText.visible = false;
+            textStyle = { font: "18px Arial", fill: "#0095DD" };
+
+            scoreText = draw.textfield(5, 5, "Points: 0", textStyle);
+            livesText = draw.textfield(
+              canvas.width - 5,
+              5,
+              `Lives: ${lives}`,
+              textStyle
+            );
+            livesText.set(1, 0);
+            lifeLostText = draw.textfield(
+            canvas.width * 0.5,
+              canvas.height * 0.5,
+              "Life lost, click to continue",
+              textStyle
+            );
+            lifeLostText.set(0.5);
+            lifeLostText.visible = false; 
+          }
+          shipLives(ship.update)
+            console.log(shipLives)
 
           /*
            * Returns the global position of where
@@ -119,13 +160,14 @@
            * render the ship's projectile.
            */
           ship.getProjectilePoint = getProjectilePoint;
-          
+
           ship.explosion = fx
             .makeEmitter(5, 8, null, new Proton.Velocity(new Proton.Span(4, 2), new Proton.Span(0, 360), 'polar'), [new Proton.RandomDrift(5, 0, .35)]);
 
           // randomized position within canvas //
           ship.x = numz.randomIntBetween(0, canvas.width);
           ship.y = numz.randomIntBetween(0, canvas.height);
+          ship.lives = 3;
 
           return ship;
         },
@@ -133,19 +175,19 @@
           const orb = draw.randomCircleInArea(canvas, false, true, '#999', 2);
           // console.log(`rad: ${orb.radius}`);
           // console.log(`den: ${orb.radius / 20 * 0.5}`);
-          Object.assign(orb, phyz.makeBody('orb', { 
+          Object.assign(orb, phyz.makeBody('orb', {
             density: orb.radius / 20 * 0.5,
             volatility: orb.radius * 0.0001,
           }));
           phyz.addRandomVelocity(orb, canvas);
           orb.update = updateOrb;
-          
+
           // TODO: why is caching killing the cross on the orb?
           // rasterize the vector graphic, basically creating a bitmap //
           // orb.snapToPixel = true;
           // const rad = orb.radius + 2;
           // orb.cache(-rad, -rad, rad * 2, rad * 2);
-          
+
           return orb;
         },
         centerOnStage,
