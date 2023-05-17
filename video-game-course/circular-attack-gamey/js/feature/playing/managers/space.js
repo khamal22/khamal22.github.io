@@ -118,9 +118,10 @@
     bodyA.velocityY -= ay;
     bodyB.velocityX += ax;
     bodyB.velocityY += ay;
-
+ //debugger;
     // each body should then handle the impact //
     bodyA.handleCollision(impact, bodyB);
     bodyB.handleCollision(impact, bodyA);
+    
   }
 }(window, window.opspark, window._));
