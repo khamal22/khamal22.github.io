@@ -45,35 +45,38 @@
       }
 
       function handleCollisionShip(impact, body) {
+
+        let scaleImpact;
+
+
         // console.log(this);
-        // debugger;
+        //debugger;
 
         switch (body.type) {
           case "orb":
-            var damage = impact * 0.2;
-            this.lives -= damage
+            scaleImpact = impact * 2;
             break;
           case "ship":
-            damage = impact * 2;
-            this.lives -= damage
-            console.log(this.lives)
+            scaleImpact = impact / 200;
             break;
-          case "projectiles":
-            damage = impact * 0.5;
-            this.lives -= damage
-            console.log(this.lives)
-
-        }
+          case "projectile":
+            scaleImpact = impact / 10;
+            break;
+          default:
             console.log(body.type);
-            if (this.lives > 0) {
-              this.lives -= damage;
-              messenger.dispatch({ type: 'DAMAGE', source: 'ship', target: this });
-              if (this.lives <= 0) {
-                explode();
-                messenger.dispatch({ type: 'EXPLOSION', source: 'ship', target: this });
-              }
-            }
-        
+            break;
+        }
+        console.log(body.type);
+        if (this.integrity > 0) {
+          this.integrity -= scaleImpact;
+          messenger.dispatch({ type: 'DAMAGE', source: 'ship', target: this });
+          if (this.integrity <= 0) {
+            explode();
+            messenger.dispatch({ type: 'EXPLOSION', source: 'ship', target: this });
+          }
+          console.log(this.integrity)
+        }
+
       }
 
       // return the ship manager api //
