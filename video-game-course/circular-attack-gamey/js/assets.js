@@ -173,6 +173,14 @@
         },
         makeOrb() {
           const orb = draw.randomCircleInArea(canvas, false, true, '#999', 2);
+          const src = "https://www.pngarts.com/files/12/Space-Asteroid-PNG-Image.png",
+          x = numz.randomIntBetween(0, canvas.width),
+          y = numz.randomIntBetween(0, canvas.height);
+          //( if you like asteroids instead of circles comment lines below back in )
+          // const orb = draw.bitmap(src, x, y)
+          // orb.scaleX = orb.scaleY = 0.1
+          // console.log(orb)
+          // orb.bitmapCache = src
           // console.log(`rad: ${orb.radius}`);
           // console.log(`den: ${orb.radius / 20 * 0.5}`);
           Object.assign(orb, phyz.makeBody('orb', {

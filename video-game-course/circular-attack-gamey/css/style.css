@@ -1,4 +1,14 @@
 /* all app specific css rules listed here */
-body {
+canvas {
     margin: 0;
+    background: rgb(0, 0, 0);
+    color: rgb(45, 45, 45);
+    padding: 10px;
+    font-family: arial;
+    background: url("https://media3.giphy.com/media/JNy7DzgqUnh9p93aru/giphy.gif") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
 }
